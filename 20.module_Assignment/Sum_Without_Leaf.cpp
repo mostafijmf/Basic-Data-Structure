@@ -14,7 +14,7 @@ public:
     }
 };
 
-Node *inputLevelOrder()
+Node *inputTree()
 {
     int val;
     cin >> val;
@@ -47,29 +47,21 @@ Node *inputLevelOrder()
     return root;
 }
 
-void printLevelOrder(Node *root)
+int sum = 0;
+void sumNodes(Node* root)
 {
-    queue<Node *> q;
-    q.push(root);
-    while (!q.empty())
-    {
-        // 1. find out
-        Node *f = q.front();
-        q.pop();
-
-        // 2. all task
-        cout << f->val << " ";
-
-        // 3. take childrens
-        if (f->left) q.push(f->left);
-        if (f->right) q.push(f->right);
-    }
+    if(root == NULL) return;
+    if(root->left == NULL && root->right == NULL) return;
+    sumNodes(root->left);
+    sumNodes(root->right);
+    sum+= root->val;
 }
 
 int main()
 {
-    Node* root = inputLevelOrder();
-    printLevelOrder(root);
-
+    Node* root = inputTree();
+    sumNodes(root);
+    cout << sum;
+    
     return 0;
 }

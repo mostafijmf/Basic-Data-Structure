@@ -57,12 +57,8 @@ Node *input_tree()
 
 int countLeaf(Node *root)
 {
-    if (root == NULL)
-        return 0;
-    if (root->left == NULL && root->right == NULL)
-    {
-        return 1;
-    }
+    if (root == NULL) return 0;
+    if (root->left == NULL && root->right == NULL) return 1;
     else
     {
         int l = countLeaf(root->left);

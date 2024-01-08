@@ -19,8 +19,9 @@ Node *inputLevelOrder()
     int val;
     cin >> val;
     Node *root;
-    if (val == -1) root == NULL;
+    if (val == -1) root = NULL;
     else root = new Node(val);
+
     queue<Node *> q;
     if (root) q.push(root);
 
@@ -35,41 +36,48 @@ Node *inputLevelOrder()
         Node *myRight;
         if (l == -1) myLeft = NULL;
         else myLeft = new Node(l);
+
         if (r == -1) myRight = NULL;
         else myRight = new Node(r);
 
         f->left = myLeft;
         f->right = myRight;
 
-        if(f->left) q.push(f->left);
-        if(f->right) q.push(f->right);
+        if (f->left) q.push(f->left);
+        if (f->right) q.push(f->right);
     }
     return root;
 }
 
-void printLevelOrder(Node *root)
+void leafNodes(Node *root)
 {
     queue<Node *> q;
-    q.push(root);
+    if (root) q.push(root);
+    vector<int> v;
     while (!q.empty())
     {
-        // 1. find out
         Node *f = q.front();
         q.pop();
+        if (f->left == NULL && f->right == NULL)
+            v.push_back(f->val);
 
-        // 2. all task
-        cout << f->val << " ";
-
-        // 3. take childrens
         if (f->left) q.push(f->left);
         if (f->right) q.push(f->right);
     }
+
+    if (!v.empty())
+    {
+        sort(v.begin(), v.end(), greater <>());
+        for (int val : v)
+            cout << val << " ";
+    }
+    else cout << 0;
 }
 
 int main()
 {
-    Node* root = inputLevelOrder();
-    printLevelOrder(root);
+    Node *root = inputLevelOrder();
+    leafNodes(root);
 
     return 0;
 }

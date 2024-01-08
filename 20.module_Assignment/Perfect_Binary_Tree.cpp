@@ -19,7 +19,7 @@ Node *inputLevelOrder()
     int val;
     cin >> val;
     Node *root;
-    if (val == -1) root == NULL;
+    if (val == -1) root = NULL;
     else root = new Node(val);
     queue<Node *> q;
     if (root) q.push(root);
@@ -47,29 +47,32 @@ Node *inputLevelOrder()
     return root;
 }
 
-void printLevelOrder(Node *root)
+int maxHeight(Node *root)
 {
-    queue<Node *> q;
-    q.push(root);
-    while (!q.empty())
-    {
-        // 1. find out
-        Node *f = q.front();
-        q.pop();
+    if (root == NULL) return 0;
+    int l = maxHeight(root->left);
+    int r = maxHeight(root->right);
+    return max(l, r) + 1;
+}
 
-        // 2. all task
-        cout << f->val << " ";
-
-        // 3. take childrens
-        if (f->left) q.push(f->left);
-        if (f->right) q.push(f->right);
-    }
+int countNode(Node *root)
+{
+    if (root == NULL)
+        return 0;
+    int l = countNode(root->left);
+    int r = countNode(root->right);
+    return l + r + 1;
 }
 
 int main()
 {
-    Node* root = inputLevelOrder();
-    printLevelOrder(root);
+    Node *root = inputLevelOrder();
+    int mx = maxHeight(root);
+    int cd = countNode(root);
+    int total = pow(2, mx)-1;
+
+    if(total == cd) cout << "YES";
+    else cout << "NO";
 
     return 0;
 }

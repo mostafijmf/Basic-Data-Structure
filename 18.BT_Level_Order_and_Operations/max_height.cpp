@@ -20,7 +20,7 @@ Node *input_tree()
     cin >> val;
     Node *root;
     if (val == -1)
-        root == NULL;
+        root = NULL;
     else
         root = new Node(val);
     queue<Node *> q;
