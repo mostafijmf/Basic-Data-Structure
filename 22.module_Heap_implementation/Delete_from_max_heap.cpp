@@ -65,7 +65,7 @@ void delete_heap(vector<int> &v)
     }
 }
 
-int main()
+int main() 
 {
     vector<int> v;
     int n;

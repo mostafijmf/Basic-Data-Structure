@@ -1,0 +1,6 @@
+ali 25 100
+kabir 15 100
+asif 5 100
+asif 5 100
+kabir 15 100
+kabir 15 100
